@@ -1,8 +1,13 @@
 
-/*
- * GET home page.
- */
-
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
-};
+function index(req, res) {
+    res.render('index', {
+        title: 'Page Title',
+        testArray: [
+            "1", 
+            "2", 
+            "3", 
+            "4"
+        ]
+    });
+}
+exports.index = index;
