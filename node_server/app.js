@@ -20,8 +20,6 @@ app.configure('development', function () {
         showStack: true
     }));
 });
-if('development' == app.get('env')) {
-}
 app.configure('production', function () {
     app.use(express.errorHandler());
 });
