@@ -1,18 +1,13 @@
 ///<reference path='DefinitelyTyped/node/node.d.ts'/>
 ///<reference path='DefinitelyTyped/express/express.d.ts'/>
 
-/**
- * Module dependencies.
- */
-
 import http = module('http')
 import express = module('express')
 import routes = module('./routes/index')
 import api = module('./routes/api')
-// import user = module('./routes/user')
 import path = module('path')
 
-var app = <Express> express();
+var app = exports.app = <Express> express();
 
 // all environments
 app.configure(function() {
@@ -41,6 +36,8 @@ app.configure('production', function() {
 app.get('/', routes.index);
 app.post('/api/1.0', api.jsonrpc);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+if (!module.parent) {
+	http.createServer(app).listen(app.get('port'), function(){
+	  console.log('Express server listening on port ' + app.get('port'));
+	});
+}

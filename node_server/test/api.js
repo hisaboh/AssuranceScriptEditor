@@ -1,23 +1,45 @@
 
-var http = require('http')
+
+var app = require('../app')
+var request = require('supertest');
 describe('api', function () {
     describe('jsonrpc', function () {
         it('should return 400 when JSON RPC version is invalid or missing', function () {
-            var options = {
-                hostname: 'localhost',
-                port: 3000,
-                path: '/api/1.0',
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
+            request(app['app']).post('/api/1.0').send({
+                "jsonrpc": "1.0",
+                "method": "test",
+                "id": 100,
+                "params": {
+                    "hoge": "hogev"
                 }
-            };
-            var req = http.request(options, function (res) {
-                console.log('hoge');
-                console.log(res.statusCode);
+            }).expect(400).end(function (err, res) {
+                if(err) {
+                    throw err;
+                }
             });
-            req.write('{"jsonrpc":"1.0", "method":"test", "id":100, "params":{"hoge":"hogev"}}');
-            req.end();
+            request(app['app']).post('/api/1.0').send({
+                "method": "test",
+                "id": 100,
+                "params": {
+                    "hoge": "hogev"
+                }
+            }).expect(400).end(function (err, res) {
+                if(err) {
+                    throw err;
+                }
+            });
+        });
+        it('should return content-type application/json', function () {
+            request(app['app']).post('/api/1.0').send({
+                jsonrpc: "2.0",
+                method: "test",
+                id: 100
+            }).expect('content-type', 'application/json').end(function (err, res) {
+                console.log(res);
+                if(err) {
+                    throw err;
+                }
+            });
         });
     });
 });

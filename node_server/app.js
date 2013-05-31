@@ -3,7 +3,7 @@ var express = require('express')
 var routes = require('./routes/index')
 var api = require('./routes/api')
 var path = require('path')
-var app = express();
+var app = exports.app = express();
 app.configure(function () {
     app.set('port', process.env.PORT || 3000);
     app.set('views', __dirname + '/views');
@@ -26,6 +26,8 @@ app.configure('production', function () {
 });
 app.get('/', routes.index);
 app.post('/api/1.0', api.jsonrpc);
-http.createServer(app).listen(app.get('port'), function () {
-    console.log('Express server listening on port ' + app.get('port'));
-});
+if(!module.parent) {
+    http.createServer(app).listen(app.get('port'), function () {
+        console.log('Express server listening on port ' + app.get('port'));
+    });
+}
