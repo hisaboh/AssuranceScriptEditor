@@ -8,6 +8,7 @@
 import http = module('http')
 import express = module('express')
 import routes = module('./routes/index')
+import api = module('./routes/api')
 // import user = module('./routes/user')
 import path = module('path')
 
@@ -38,7 +39,7 @@ app.configure('production', function() {
 });
 
 app.get('/', routes.index);
-// app.get('/users', user.list);
+app.get('/api/1.0', api.jsonrpc);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
