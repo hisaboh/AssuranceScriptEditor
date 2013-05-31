@@ -25,7 +25,7 @@ app.configure('production', function () {
     app.use(express.errorHandler());
 });
 app.get('/', routes.index);
-app.get('/api/1.0', api.jsonrpc);
+app.post('/api/1.0', api.jsonrpc);
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });

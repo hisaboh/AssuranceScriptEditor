@@ -2,6 +2,6 @@
 
 import express = module("express")
 export function jsonrpc(req: any, res: any) {
-	console.log(req);
+	console.log(req.body);
 	res.send("respond with a resource");
 }
