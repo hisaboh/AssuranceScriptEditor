@@ -3,28 +3,28 @@ export class RPCError {
 }
 
 export class ParseError extends RPCError {
-	constructor(public data: any) {
-		super(-32700, 'Parse error', data);
+	constructor(msg: string, data: any) {
+		super(-32700, 'Parse error: ' + msg, data);
 	}
 }
 
 export class InvalidRequestError extends RPCError {
-	constructor(public data: any) {
-		super(-32600, 'Invalid Request', data);
+	constructor(msg: string, data: any) {
+		super(-32600, 'Invalid Request: ' + msg, data);
 	}
 }
 export class MethodNotFoundError extends RPCError {
-	constructor(public data: any) {
-		super(-32601, 'Method not found', data);
+	constructor(msg: string, data: any) {
+		super(-32601, 'Method not found: ' + msg, data);
 	}
 }
 export class InvalidParamsError extends RPCError {
-	constructor(public data: any) {
-		super(-32602, 'Invalid params', data);
+	constructor(msg: string, data: any) {
+		super(-32602, 'Invalid params: ' + msg, data);
 	}
 }
 export class InternalError extends RPCError {
-	constructor(public data: any) {
-		super(-32603, 'Internal error', data);
+	constructor(msg: string, data: any) {
+		super(-32603, 'Internal error: ' + msg, data);
 	}
 }

@@ -10,7 +10,7 @@ function jsonrpc(req, res) {
         }), statusCode);
     };
     if(req.body.jsonrpc !== '2.0') {
-        sendError(req.body.id, 400, new error.InvalidRequestError(null));
+        sendError(req.body.id, 400, new error.InvalidRequestError('JSON RPC version is invalid or missiong', null));
         return;
     }
     res.send("respond with a resource");

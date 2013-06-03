@@ -20,6 +20,7 @@ describe('api', function () {
                 assert.notStrictEqual(undefined, res.body.error);
                 assert.notStrictEqual(undefined, res.body.error.code);
                 assert.equal(-32600, res.body.error.code);
+                console.log(res.body);
             });
             request(app['app']).post('/api/1.0').send({
                 "method": "test",
