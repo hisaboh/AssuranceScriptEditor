@@ -35,7 +35,6 @@ describe('api', function () {
                 method: "test",
                 id: 100
             }).expect('content-type', 'application/json').end(function (err, res) {
-                console.log(res);
                 if(err) {
                     throw err;
                 }

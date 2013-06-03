@@ -1,1 +1,1 @@
-app.ts routes/index.ts routes/api.ts test/api.ts
+app.ts routes/index.ts routes/api.ts routes/error.ts test/api.ts
