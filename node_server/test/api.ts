@@ -1,6 +1,10 @@
 ///<reference path='../DefinitelyTyped/mocha/mocha.d.ts'/>
 ///<reference path='../DefinitelyTyped/node/node.d.ts'/>
 
+// reference: http://nodejs.org/api/assert.html
+// reference: http://visionmedia.github.io/mocha/
+// reference: https://github.com/visionmedia/supertest
+
 import assert = module('assert')
 import http = module('http')
 import app = module('../app')
@@ -13,8 +17,13 @@ describe('api', function() {
 				.post('/api/1.0')
 				.send({"jsonrpc":"1.0", "method":"test", "id":100, "params":{"hoge":"hogev"}})
 				.expect(400)
+//				.expect('test')
 				.end(function (err, res) {
 					if (err) throw err;
+					assert.equal(100, res.body.id);
+					assert.notStrictEqual(undefined, res.body.error);
+					assert.notStrictEqual(undefined, res.body.error.code);
+					assert.equal(-32600, res.body.error.code);
 				});
 			request(app['app'])	// TODO: 型制約を逃げている。要修正。
 				.post('/api/1.0')

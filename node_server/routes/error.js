@@ -11,6 +11,7 @@ var RPCError = (function () {
     }
     return RPCError;
 })();
+exports.RPCError = RPCError;
 var ParseError = (function (_super) {
     __extends(ParseError, _super);
     function ParseError(data) {
@@ -19,6 +20,7 @@ var ParseError = (function (_super) {
     }
     return ParseError;
 })(RPCError);
+exports.ParseError = ParseError;
 var InvalidRequestError = (function (_super) {
     __extends(InvalidRequestError, _super);
     function InvalidRequestError(data) {
@@ -27,6 +29,7 @@ var InvalidRequestError = (function (_super) {
     }
     return InvalidRequestError;
 })(RPCError);
+exports.InvalidRequestError = InvalidRequestError;
 var MethodNotFoundError = (function (_super) {
     __extends(MethodNotFoundError, _super);
     function MethodNotFoundError(data) {
@@ -35,6 +38,7 @@ var MethodNotFoundError = (function (_super) {
     }
     return MethodNotFoundError;
 })(RPCError);
+exports.MethodNotFoundError = MethodNotFoundError;
 var InvalidParamsError = (function (_super) {
     __extends(InvalidParamsError, _super);
     function InvalidParamsError(data) {
@@ -43,6 +47,7 @@ var InvalidParamsError = (function (_super) {
     }
     return InvalidParamsError;
 })(RPCError);
+exports.InvalidParamsError = InvalidParamsError;
 var InternalError = (function (_super) {
     __extends(InternalError, _super);
     function InternalError(data) {
@@ -51,3 +56,4 @@ var InternalError = (function (_super) {
     }
     return InternalError;
 })(RPCError);
+exports.InternalError = InternalError;

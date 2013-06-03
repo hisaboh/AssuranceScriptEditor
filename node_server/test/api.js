@@ -1,4 +1,4 @@
-
+var assert = require('assert')
 
 var app = require('../app')
 var request = require('supertest');
@@ -16,6 +16,10 @@ describe('api', function () {
                 if(err) {
                     throw err;
                 }
+                assert.equal(100, res.body.id);
+                assert.notStrictEqual(undefined, res.body.error);
+                assert.notStrictEqual(undefined, res.body.error.code);
+                assert.equal(-32600, res.body.error.code);
             });
             request(app['app']).post('/api/1.0').send({
                 "method": "test",

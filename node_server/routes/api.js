@@ -1,4 +1,5 @@
 
+var error = require("./error")
 function jsonrpc(req, res) {
     res.header('Content-Type', 'application/json');
     var sendError = function (id, statusCode, error) {
@@ -9,7 +10,7 @@ function jsonrpc(req, res) {
         }), statusCode);
     };
     if(req.body.jsonrpc !== '2.0') {
-        sendError('hoge', 400, 'test');
+        sendError(req.body.id, 400, new error.InvalidRequestError(null));
         return;
     }
     res.send("respond with a resource");
