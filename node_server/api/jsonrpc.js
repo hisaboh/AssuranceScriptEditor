@@ -6,7 +6,7 @@ function add(key, method) {
     exports.methods[key] = method;
 }
 exports.add = add;
-function handleHttp(req, res) {
+function httpHandler(req, res) {
     function onError(id, statusCode, error) {
         res.send(JSON.stringify({
             jsonrpc: '2.0',
@@ -47,7 +47,7 @@ function handleHttp(req, res) {
     }
     return;
 }
-exports.handleHttp = handleHttp;
+exports.httpHandler = httpHandler;
 add('ping', function (params, callback) {
     callback.onSuccess('ok');
 });

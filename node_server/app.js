@@ -23,7 +23,7 @@ app.configure('development', function () {
 app.configure('production', function () {
     app.use(express.errorHandler());
 });
-app.post('/api/1.0', api.handleHttp);
+app.post('/api/1.0', api.httpHandler);
 if(!module.parent) {
     http.createServer(app).listen(app.get('port'), function () {
         console.log('Express server listening on port ' + app.get('port'));

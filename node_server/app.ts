@@ -33,7 +33,7 @@ app.configure('production', function() {
 });
 
 //app.get('/', routes.index);
-app.post('/api/1.0', api.handleHttp);
+app.post('/api/1.0', api.httpHandler);
 
 if (!module.parent) {
 	http.createServer(app).listen(app.get('port'), function(){
