@@ -31,7 +31,7 @@ export function add(key:string, method: rpcMethod) {
 /**
  * handle method call
  */
-export function handleHttp(req: any, res: any) {
+export function httpHandler(req: any, res: any) {
 	function onError(id: any, statusCode: number, error: error.RPCError) : void {
 		res.send(JSON.stringify({
 			jsonrpc: '2.0',
