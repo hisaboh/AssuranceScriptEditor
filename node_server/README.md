@@ -5,6 +5,7 @@ AssureIt
 ------------
 
 ```
+mysql -u root -p < ../server/misc/ASEserver.sql  
 npm install -g typescript  
 npm install -g express  
 npm install -g mocha 
