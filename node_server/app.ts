@@ -3,7 +3,6 @@
 
 import http = module('http')
 import express = module('express')
-import routes = module('./routes/index')
 import api = module('./routes/api')
 import path = module('path')
 
@@ -33,8 +32,8 @@ app.configure('production', function() {
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
-app.post('/api/1.0', api.jsonrpc);
+//app.get('/', routes.index);
+app.post('/api/1.0', api.handleHttp);
 
 if (!module.parent) {
 	http.createServer(app).listen(app.get('port'), function(){

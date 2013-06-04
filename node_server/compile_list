@@ -1,1 +1,5 @@
-app.ts routes/index.ts routes/api.ts routes/error.ts test/api.ts
+app.ts
+routes/api.ts
+api/error.ts
+api/jsonrpc.ts
+test/api.ts
