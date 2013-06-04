@@ -2,10 +2,10 @@
 var error = require("./error")
 exports.methods = {
 };
-function push(key, method) {
-    method[key] = method;
+function add(key, method) {
+    exports.methods[key] = method;
 }
-exports.push = push;
+exports.add = add;
 function handleHttp(req, res) {
     function onError(id, statusCode, error) {
         res.send(JSON.stringify({
@@ -48,3 +48,6 @@ function handleHttp(req, res) {
     return;
 }
 exports.handleHttp = handleHttp;
+add('ping', function (params, callback) {
+    callback.onSuccess('ok');
+});

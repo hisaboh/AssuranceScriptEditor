@@ -18,16 +18,19 @@ export interface rpcCallback {
 }
 
 /**
- * JSON-RPCのmethod本体
+ * JSON-RPC method's interface
  */
 export interface rpcMethod {
 	(params:any, callback:rpcCallback): void;	
 }
 export var methods: {[key: string]: rpcMethod;} = {};
-export function push(key:string, method: rpcMethod) {
-	method[key] = method;
+export function add(key:string, method: rpcMethod) {
+	methods[key] = method;
 }
 
+/**
+ * handle method call
+ */
 export function handleHttp(req: any, res: any) {
 	function onError(id: any, statusCode: number, error: error.RPCError) : void {
 		res.send(JSON.stringify({
@@ -74,3 +77,7 @@ export function handleHttp(req: any, res: any) {
 	return;
 }
 
+// default api
+add('ping', function(params: any, callback: rpcCallback) {
+	callback.onSuccess('ok');
+});
