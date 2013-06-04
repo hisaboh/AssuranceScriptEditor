@@ -32,6 +32,11 @@ describe('api', function () {
                 if(err) {
                     throw err;
                 }
+                assert.equal(100, res.body.id);
+                assert.notStrictEqual(undefined, res.body.error);
+                assert.notStrictEqual(undefined, res.body.error.code);
+                assert.equal(-32600, res.body.error.code);
+                console.log(res.body);
             });
         });
         it('should return content-type application/json', function () {

@@ -17,14 +17,12 @@ describe('api', function() {
 				.post('/api/1.0')
 				.send({"jsonrpc":"1.0", "method":"test", "id":100, "params":{"hoge":"hogev"}})
 				.expect(400)
-//				.expect('test')
 				.end(function (err, res) {
 					if (err) throw err;
 					assert.equal(100, res.body.id);
 					assert.notStrictEqual(undefined, res.body.error);
 					assert.notStrictEqual(undefined, res.body.error.code);
 					assert.equal(-32600, res.body.error.code);
-					console.log(res.body);
 				});
 			request(app['app'])	// TODO: 型制約を逃げている。要修正。
 				.post('/api/1.0')
@@ -32,6 +30,10 @@ describe('api', function() {
 				.expect(400)
 				.end(function (err, res) {
 					if (err) throw err;
+					assert.equal(100, res.body.id);
+					assert.notStrictEqual(undefined, res.body.error);
+					assert.notStrictEqual(undefined, res.body.error.code);
+					assert.equal(-32600, res.body.error.code);
 				});
 		});
 		it('should return content-type application/json', function() {
