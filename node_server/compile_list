@@ -2,4 +2,5 @@ app.ts
 routes/api.ts
 api/error.ts
 api/jsonrpc.ts
+db/db.ts
 test/api.ts
