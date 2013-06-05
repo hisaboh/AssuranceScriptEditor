@@ -89,6 +89,19 @@ describe('api', function () {
                 assert.notStrictEqual(undefined, res.body.result);
                 assert.equal('ok', res.body.result);
             });
+            request(app['app']).post('/api/1.0/').send({
+                jsonrpc: "2.0",
+                method: "ping",
+                id: 100
+            }).expect(200).end(function (err, res) {
+                if(err) {
+                    throw err;
+                }
+                assert.equal(100, res.body.id);
+                assert.strictEqual(null, res.body.error);
+                assert.notStrictEqual(undefined, res.body.result);
+                assert.equal('ok', res.body.result);
+            });
         });
     });
 });
