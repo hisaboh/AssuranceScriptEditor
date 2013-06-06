@@ -2,10 +2,6 @@
 
 import mysql = module('mysql')
 
-interface QueryCallback {
-	(err:any, result:any) : void;
-}
-
 export class Database {
 	public con: mysql.Connection;
 
@@ -22,19 +18,10 @@ export class Database {
 		this.con = Database.getConnection();
 	}
 
-	query(sql:string, callback: QueryCallback);
-	query(sql:string, values:any[], callback:QueryCallback);
+	query(sql:string, callback: mysql.QueryCallback);
+	query(sql:string, values:any[], callback: mysql.QueryCallback);
 	query(sql: string, values: any, callback?: any) {
-		if (values && typeof values ==='Array') {
-			values = values || [];
-		} else if (values && typeof values === 'function') {
-			callback = values;
-			values = [];
-		}
-		console.log(sql);
-		console.log(values);
-		console.log(callback);
-		this.con.query(sql, [], (err, result) => {console.log(result);});
+		this.con.query(sql, values, callback);
 	}
 
 	begin(callback): void {
@@ -65,6 +52,10 @@ export class Database {
 		this.query('SET autocommit=1', (err, query) => {
 			callback(err, query);
 		});
+	}
+
+	close(callback?: mysql.QueryCallback) {
+		this.con.end(callback);
 	}
 
 }

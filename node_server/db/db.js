@@ -12,18 +12,7 @@ var Database = (function () {
         });
     };
     Database.prototype.query = function (sql, values, callback) {
-        if(values && typeof values === 'Array') {
-            values = values || [];
-        } else if(values && typeof values === 'function') {
-            callback = values;
-            values = [];
-        }
-        console.log(sql);
-        console.log(values);
-        console.log(callback);
-        this.con.query(sql, [], function (err, result) {
-            console.log(result);
-        });
+        this.con.query(sql, values, callback);
     };
     Database.prototype.begin = function (callback) {
         var _this = this;
@@ -51,6 +40,9 @@ var Database = (function () {
         this.query('SET autocommit=1', function (err, query) {
             callback(err, query);
         });
+    };
+    Database.prototype.close = function (callback) {
+        this.con.end(callback);
     };
     return Database;
 })();

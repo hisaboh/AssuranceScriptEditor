@@ -29,10 +29,3 @@ if(!module.parent) {
         console.log('Express server listening on port ' + app.get('port'));
     });
 }
-var db = require('./db/db')
-var con = new db.Database();
-con.query('SELECT 1', [], function (err, result) {
-    console.log(result);
-});
-con.con.end(function (err, result) {
-});
