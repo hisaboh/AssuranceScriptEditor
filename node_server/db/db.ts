@@ -10,8 +10,7 @@ export class Database {
 				host: 'localhost',
 				user: 'ads_test',
 				password: 'ads_test',
-				database: 'dcase',
-				debug: true
+				database: 'dcase'
 			});
 	}
 
@@ -20,10 +19,6 @@ export class Database {
 	}
 
 	query(sql: string, values?: any[]) {
-		this.con.connect(function(err) {
-			console.log(err);
-			console.log('err');
-		});
 //		console.log(this.con);
 		console.log('hoge');
 		values = values || [];

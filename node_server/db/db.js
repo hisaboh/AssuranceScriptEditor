@@ -8,15 +8,10 @@ var Database = (function () {
             host: 'localhost',
             user: 'ads_test',
             password: 'ads_test',
-            database: 'dcase',
-            debug: true
+            database: 'dcase'
         });
     };
     Database.prototype.query = function (sql, values) {
-        this.con.connect(function (err) {
-            console.log(err);
-            console.log('err');
-        });
         console.log('hoge');
         values = values || [];
         this.con.query(sql, values, function (err, result) {
