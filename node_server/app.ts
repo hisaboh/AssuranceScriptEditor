@@ -40,3 +40,10 @@ if (!module.parent) {
 	  console.log('Express server listening on port ' + app.get('port'));
 	});
 }
+
+import db = module('./db/db')
+var con = new db.Database();
+con.query('SELECT 1', [], (err, result) => {console.log(result)});
+con.con.end((err, result) => {});
+/*
+*/
