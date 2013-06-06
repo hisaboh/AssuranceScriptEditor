@@ -55,6 +55,7 @@ export class Database {
 	}
 
 	close(callback?: mysql.QueryCallback) {
+		callback = callback || (err, result) => {if (err) throw err;};
 		this.con.end(callback);
 	}
 

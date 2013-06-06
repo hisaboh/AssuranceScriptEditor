@@ -42,6 +42,11 @@ var Database = (function () {
         });
     };
     Database.prototype.close = function (callback) {
+        callback = callback || function (err, result) {
+            if(err) {
+                throw err;
+            }
+        };
         this.con.end(callback);
     };
     return Database;
