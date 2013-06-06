@@ -1,6 +1,6 @@
 var assert = require('assert')
 
-var app = require('../app')
+var app = require('../../app')
 var request = require('supertest');
 describe('api', function () {
     describe('jsonrpc', function () {

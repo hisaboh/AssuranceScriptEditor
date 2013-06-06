@@ -1,5 +1,5 @@
-///<reference path='../DefinitelyTyped/mocha/mocha.d.ts'/>
-///<reference path='../DefinitelyTyped/node/node.d.ts'/>
+///<reference path='../../DefinitelyTyped/mocha/mocha.d.ts'/>
+///<reference path='../../DefinitelyTyped/node/node.d.ts'/>
 
 // reference: http://nodejs.org/api/assert.html
 // reference: http://visionmedia.github.io/mocha/
@@ -7,8 +7,8 @@
 
 import assert = module('assert')
 import http = module('http')
-import app = module('../app')
-var request = require('supertest');
+import app = module('../../app')
+var request = require('supertest');	// TODO: supertestの宣言ファイル作成
 
 describe('api', function() {
 	describe('jsonrpc', function() {

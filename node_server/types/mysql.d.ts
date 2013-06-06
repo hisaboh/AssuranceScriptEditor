@@ -3,8 +3,8 @@ declare module 'mysql' {
     declare function createPool(config: any);
 
     class Connection {
-        static createQuery(sql, values, cb): any;
-        connect(cb): void;
+        static createQuery(sql, values?, cb?): any;
+        connect(cb?): void;
         changeUser(options, cb): any;
         query(sql, values, cb): any;
         ping(cb): void;
