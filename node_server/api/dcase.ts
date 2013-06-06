@@ -1,7 +1,7 @@
 import db = module('../db/db')
-import jsonrpc = module('./jsonrpc')
+import type = module('./type')
 
-export function getDCaseList(params:any, callback: jsonrpc.rpcCallback) {
+export function getDCaseList(params:any, callback: type.Callback) {
 	var con = new db.Database();
 	con.query('SELECT * FROM dcase', (err, result) => {
 		if (err) throw err;

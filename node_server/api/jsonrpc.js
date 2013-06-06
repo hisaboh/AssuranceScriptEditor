@@ -1,5 +1,6 @@
 
 var error = require("./error")
+
 exports.methods = {
 };
 function add(key, method) {

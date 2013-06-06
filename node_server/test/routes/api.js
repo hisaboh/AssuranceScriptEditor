@@ -91,7 +91,7 @@ describe('api', function () {
             });
             request(app['app']).post('/api/1.0/').send({
                 jsonrpc: "2.0",
-                method: "getDCaseList",
+                method: "ping",
                 id: 100
             }).expect(200).end(function (err, res) {
                 if(err) {

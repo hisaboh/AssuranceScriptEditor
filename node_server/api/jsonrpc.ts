@@ -7,6 +7,7 @@
  */
 import express = module("express")
 import error = module("./error")
+import type = module('./type')
 
 /**
  * JSON-RPCのmethodに渡されるcallback。
@@ -23,8 +24,8 @@ export interface rpcCallback {
 export interface rpcMethod {
 	(params:any, callback:rpcCallback): void;	
 }
-export var methods: {[key: string]: rpcMethod;} = {};
-export function add(key:string, method: rpcMethod) {
+export var methods: {[key: string]: type.Method;} = {};
+export function add(key:string, method: type.Method) {
 	methods[key] = method;
 }
 
@@ -47,7 +48,7 @@ export function httpHandler(req: any, res: any) {
 		onError(req.body.id, 400, new error.InvalidRequestError('JSON RPC version is invalid or missiong', null));
 		return;
 	}
-	var method: rpcMethod =  methods[req.body.method];
+	var method: type.Method =  methods[req.body.method];
 	if (!method) {
 		onError(req.body.id, 404, new error.MethodNotFoundError(req.body.method, null));
 		return;
@@ -78,6 +79,6 @@ export function httpHandler(req: any, res: any) {
 }
 
 // default api
-add('ping', function(params: any, callback: rpcCallback) {
+add('ping', function(params: any, callback: type.Callback) {
 	callback.onSuccess('ok');
 });
