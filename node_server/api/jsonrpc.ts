@@ -9,21 +9,6 @@ import express = module("express")
 import error = module("./error")
 import type = module('./type')
 
-/**
- * JSON-RPCのmethodに渡されるcallback。
- * 成功時はonSuccessを呼び出し、失敗時はonFailureを呼び出す。
- */
-export interface rpcCallback {
-	onSuccess(result: any) : void;
-	onFailure(error: error.RPCError) : void;
-}
-
-/**
- * JSON-RPC method's interface
- */
-export interface rpcMethod {
-	(params:any, callback:rpcCallback): void;	
-}
 export var methods: {[key: string]: type.Method;} = {};
 export function add(key:string, method: type.Method) {
 	methods[key] = method;
